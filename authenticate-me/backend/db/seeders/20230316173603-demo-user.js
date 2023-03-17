@@ -13,7 +13,7 @@ module.exports = {
     options.tableName = 'Users';
     return queryInterface.bulkInsert(options, [
       {
-        fistName: 'A',
+        firstName: 'A',
         lastName: 'aA',
         email: 'demo@user.io',
         username: 'Demo-lition',
