@@ -59,7 +59,15 @@ router.get('/', async (req, res, next) => {
 
         !totalStars ? spot.avgRating = 'There is no rating at the moment' : spot.avgRating = (totalStars / length).toFixed(1)
 
-        spot.Spotimages.forEach(image => spot.previewImage = image.url)
+        spot.Spotimages.forEach(image => {
+            if (image.preview) {
+                spot.previewImage = image.url
+            }
+        })
+
+        if (!spot.previewImage) {
+            spot.previewImage = 'No preview image'
+        }
 
         delete spot.Reviews;
         delete spot.Spotimages;
@@ -99,7 +107,15 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
             !totalStars ? spot.avgRating = 'There is no rating at the moment' : spot.avgRating = (totalStars / length).toFixed(1)
 
-            spot.Spotimages.forEach(image => spot.previewImage = image.url)
+            spot.Spotimages.forEach(image => {
+                if (image.preview) {
+                    spot.previewImage = image.url
+                }
+            })
+
+            if (!spot.previewImage) {
+                spot.previewImage = 'No preview image'
+            }
 
             delete spot.Reviews;
             delete spot.Spotimages;
@@ -207,8 +223,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
             err.status = 404;
             next(err);
         }
-        // console.log(user);
-        // console.log(spot);
+
         if (user.dataValues.id === spot.dataValues.ownerId) {
 
             const newImage = await spot.createSpotimage({
