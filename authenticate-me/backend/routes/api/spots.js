@@ -84,7 +84,10 @@ router.get('/current', requireAuth, async (req, res, next) => {
     const { user } = req;
 
     if (user) {
-        const spots = await Spot.unscoped().findByPk(user.id, {
+        const spots = await Spot.unscoped().findAll({
+            where: {
+                ownerId: user.id
+            },
             include: [
                 { model: Review },
                 { model: Spotimage }
@@ -97,7 +100,11 @@ router.get('/current', requireAuth, async (req, res, next) => {
             next(err);
         }
 
-        let spotsList = [spots.toJSON()];
+        let spotsList = []
+
+        spots.forEach(spot => {
+            spotsList.push(spot.toJSON())
+        })
 
         spotsList.forEach(spot => {
             let length = spot.Reviews.length;
@@ -312,5 +319,119 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
     });
 });
 
+//refactor later
+//Get all Reviews by a Spot's id
+router.get('/:spotId/reviews', async (req, res, next) => {
+
+    const id = req.params.spotId;
+
+    const spot = await Spot.findByPk(id, {
+        include: [
+            { model: User },
+            { model: Review,
+            attributes: {
+                exclude: []
+            } }
+        ]
+    })
+    const spotObj = spot.toJSON();
+    let reviews = spotObj.Reviews;
+
+
+    let reviewsList = [];
+
+    console.log(spotObj);
+
+    for (let review of reviews) {
+
+        review.User = {
+            id: spotObj.User.id,
+            firstName: spotObj.User.firstName,
+            lastName: spotObj.User.lastName
+        }
+
+        let id = review.id;
+
+        const reviewImages = await Reviewimage.findAll({
+            attributes: ['id', 'url'],
+            where: {
+                reviewId: id
+            }
+        });
+
+        const reviewimagelist = [];
+        reviewImages.forEach(reviewimg => {
+            let reviewimgobj = reviewimg.toJSON();
+            reviewimagelist.push(reviewimgobj);
+        })
+
+        review.ReviewImages = reviewimagelist;
+
+        reviewsList.push(review);
+        console.log(reviewsList);
+
+    }
+
+    res.json({Reviews: reviewsList});
+})
+
+const validateCreateReview = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .withMessage('Review text is required'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors
+]
+
+router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
+
+    const { user } = req;
+
+    if (user) {
+
+        const { review, stars } = req.body
+        const id = req.params.spotId;
+
+        const spot = await Spot.findByPk(id, {
+            include: [
+                { model: Review }
+            ]
+        });
+
+        if (!spot) {
+            const err = new Error("Spot couldn't be found")
+            err.status = 404;
+            next(err);
+        }
+
+        const reviews = spot.dataValues.Reviews
+
+        for (let review of reviews) {
+            console.log(review.dataValues);
+            if (review.dataValues.userId === spot.dataValues.ownerId) {
+                const err = new Error("User already has a review for this spot")
+                err.status = 403;
+                next(err);
+            }
+
+        }
+
+        const newReview = await spot.createReview({
+                spotId: spot.dataValues.id,
+                userId: spot.dataValues.ownerId,
+                review: review,
+                stars: stars
+        })
+
+        return res.json(newReview);
+    }
+
+    return res.json({
+        message: "Authentication required"
+    })
+
+})
 
 module.exports = router;
