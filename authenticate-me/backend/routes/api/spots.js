@@ -224,6 +224,45 @@ router.post('/', requireAuth, validateCreateSpot, async (req, res, next) => {
         console.log(user);
         const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+        const err = {
+            message: "Bad Request",
+            errors: {
+
+            }
+        }
+
+        if (!address) {
+            err.errors.address = "Street address is required"
+        }
+        if (!city) {
+            err.errors.city = "City is required"
+        }
+        if (!state) {
+            err.errors.state = "State is required"
+        }
+        if (!country) {
+            err.errors.country = "Country is required"
+        }
+        if (!lat) {
+            err.errors.lat = "Latitude is not valid"
+        }
+        if (!lng) {
+            err.errors.lng = "Longitude is not valid"
+        }
+        if (!name) {
+            err.errors.name = "Name must be less than 50 characters"
+        }
+        if (!description) {
+            err.errors.description = "Description is required"
+        }
+        if (!price) {
+            err.errors.price = "Price per day is required"
+        }
+
+        if (Object.keys(err.errors).length) {
+            return res.status(400).json(err);
+        }
+
         const spot = await Spot.create({
             ownerId: user.dataValues.id,
             address: address,
@@ -304,6 +343,45 @@ router.put('/:spotId', requireAuth, validateCreateSpot, async (req, res, next) =
         }
 
         if (user.dataValues.id === spot.dataValues.ownerId) {
+
+            const err = {
+                message: "Bad Request",
+                errors: {
+
+                }
+            }
+
+            if (!address) {
+                err.errors.address = "Street address is required"
+            }
+            if (!city) {
+                err.errors.city = "City is required"
+            }
+            if (!state) {
+                err.errors.state = "State is required"
+            }
+            if (!country) {
+                err.errors.country = "Country is required"
+            }
+            if (!lat) {
+                err.errors.lat = "Latitude is not valid"
+            }
+            if (!lng) {
+                err.errors.lng = "Longitude is not valid"
+            }
+            if (!name) {
+                err.errors.name = "Name must be less than 50 characters"
+            }
+            if (!description) {
+                err.errors.description = "Description is required"
+            }
+            if (!price) {
+                err.errors.price = "Price per day is required"
+            }
+
+            if (Object.keys(err.errors).length) {
+                return res.status(400).json(err);
+            }
 
             await spot.update({
                 address: address,
@@ -599,8 +677,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
     })
 
 })
-
-
 
 
 
