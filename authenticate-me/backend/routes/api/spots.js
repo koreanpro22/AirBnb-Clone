@@ -60,6 +60,8 @@ router.get('/', async (req, res, next) => {
         pageNum = 1
     } else if (page < 1 || page > 10) {
         errors.page = "Page must be greater than or equal to 1"
+    } else {
+        pageNum = page
     }
 
     if (Object.keys(errors).length) {
@@ -76,7 +78,7 @@ router.get('/', async (req, res, next) => {
             { model: Review },
             { model: Spotimage }
         ],
-        limit: limit,
+        limit: pageNum,
         offset: offset,
     });
 
