@@ -49,13 +49,6 @@ router.get('/', async (req, res, next) => {
     let pageNum;
     const errors = {};
 
-    limit = size;
-    if (!size) {
-        limit = 20
-    } else if (size < 1 || size > 20) {
-        errors.size = "Size must be greater than or equal to 1"
-    }
-
     if (!page) {
         pageNum = 1
     } else if (page < 1 || page > 10) {
@@ -64,21 +57,29 @@ router.get('/', async (req, res, next) => {
         pageNum = page
     }
 
+    if (!size) {
+        limit = 20
+    } else if (size < 1 || size > 20) {
+        errors.size = "Size must be greater than or equal to 1"
+    } else {
+        offset = size * (pageNum - 1);
+    }
+
     if (Object.keys(errors).length) {
         res.status(400).json({
             message: "Bad Request",
             errors: errors
         })
     }
+    console.log(size)
 
-    offset = size * (page - 1);
 
     const spots = await Spot.findAll({
         include: [
             { model: Review },
             { model: Spotimage }
         ],
-        limit: pageNum,
+        limit: limit,
         offset: offset,
     });
 
