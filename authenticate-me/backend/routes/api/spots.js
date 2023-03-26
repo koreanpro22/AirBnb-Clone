@@ -330,7 +330,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 });
 
 //Edit a Spot
-router.put('/:spotId', requireAuth, validateCreateSpot, async (req, res, next) => {
+router.put('/:spotId', requireAuth, async (req, res, next) => {
     const { user } = req
     const id = req.params.spotId;
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
@@ -349,9 +349,7 @@ router.put('/:spotId', requireAuth, validateCreateSpot, async (req, res, next) =
 
             const err = {
                 message: "Bad Request",
-                errors: {
-
-                }
+                errors: {}
             }
 
             if (!address) {
@@ -366,13 +364,13 @@ router.put('/:spotId', requireAuth, validateCreateSpot, async (req, res, next) =
             if (!country) {
                 err.errors.country = "Country is required"
             }
-            if (!lat) {
+            if (!lat || lat > 90 || lat < -90) {
                 err.errors.lat = "Latitude is not valid"
             }
-            if (!lng) {
+            if (!lng || lng > 180 || lng < -180) {
                 err.errors.lng = "Longitude is not valid"
             }
-            if (!name) {
+            if (!name || name.length >= 50) {
                 err.errors.name = "Name must be less than 50 characters"
             }
             if (!description) {

@@ -149,6 +149,25 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
             const { review, stars } = req.body;
 
+            const err = {
+                message: "Bad Request",
+                errors: {}
+            };
+
+
+            if (!review) {
+                err.errors.review = "Review text is required"
+            }
+
+            if (!stars || stars > 5 || stars < 1) {
+                err.errors.review = "Stars must be an integer from 1 to 5"
+            }
+
+            if (Object.keys(err).length) {
+                return res.status(400).json(err);
+            }
+
+
             await reviewObj.update({
                 review: review,
                 stars: stars
