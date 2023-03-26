@@ -42,28 +42,39 @@ router.get('/current', requireAuth, async (req, res, next) => {
             ]
         });
 
-        if (!reviews) {
-            const err = new Error("Spot couldn't be found")
-            err.status = 404;
-            next(err);
-        }
-
-
         const reviewsList = []
 
         reviews.forEach(review => {
             reviewsList.push(review.toJSON());
         });
 
+
         for (let reviews of reviewsList) {
-            reviews.Reviewimages.forEach(imageObj => {
-                if (imageObj.preview) {
-                    reviews.Spot.previewImage = imageObj.url
+
+            const spotId = reviews.Spot.id
+
+            const images = await Spotimage.findAll({
+                where: {
+                    spotId: spotId
                 }
+            });
+
+            const imagesList = []
+
+            images.forEach(image => {
+                imagesList.push(image.toJSON())
             })
+
+            for (image of imagesList) {
+                if (image.preview) {
+                    reviews.Spot.previewImage = image.url
+                }
+            }
+
             if (!reviews.Spot.previewImage) {
                 reviews.Spot.previewImage = null
             }
+
         }
 
         return res.json({
@@ -77,7 +88,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 
 
-
+//Add an Image to a Review based on the Review's Id
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
     const id = req.params.reviewId;
@@ -118,6 +129,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 })
 
 
+//Edit a Review
 router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
     const id = req.params.reviewId;
@@ -157,6 +169,7 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 })
 
 
+//Delete a Review
 router.delete('/:reviewId', requireAuth, async (req, res, next) => {
 
     const id = req.params.reviewId;
@@ -178,7 +191,7 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
 
             return res.json({
                 "message": "Successfully deleted"
-              });
+            });
         }
 
         return res.status(403).json({
