@@ -69,7 +69,7 @@ router.get('/', async (req, res, next) => {
         })
     }
 
-    offset = size * (page-1);
+    offset = size * (page - 1);
 
     const spots = await Spot.findAll({
         include: [
@@ -92,7 +92,7 @@ router.get('/', async (req, res, next) => {
         !totalStars ? spot.avgRating = 'There is no rating at the moment' : spot.avgRating = (totalStars / length).toFixed(1)
 
         spot.Spotimages.forEach(image => {
-            if(image.preview) {
+            if (image.preview) {
                 spot.previewImage = image.url
 
             }
@@ -147,15 +147,15 @@ router.get('/current', requireAuth, async (req, res, next) => {
             !totalStars ? spot.avgRating = 'There is no rating at the moment' : spot.avgRating = (totalStars / length).toFixed(1)
 
             spot.Spotimages.forEach(image => {
-                console.log(image);
-                if(image.preview) {
+                if (image.preview) {
                     spot.previewImage = image.url
-
                 }
             })
+
             if (!spot.previewImage) {
                 spot.previewImage = null
             }
+
             delete spot.Reviews;
             delete spot.Spotimages;
         })
@@ -262,8 +262,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
             err.status = 404;
             next(err);
         }
-        // console.log(user);
-        // console.log(spot);
+
         if (user.dataValues.id === spot.dataValues.ownerId) {
 
             const newImage = await spot.createSpotimage({
@@ -361,10 +360,12 @@ router.get('/:spotId/reviews', async (req, res, next) => {
     const spot = await Spot.findByPk(id, {
         include: [
             { model: User },
-            { model: Review,
-            attributes: {
-                exclude: []
-            } }
+            {
+                model: Review,
+                attributes: {
+                    exclude: []
+                }
+            }
         ]
     })
     const spotObj = spot.toJSON();
@@ -405,7 +406,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
     }
 
-    res.json({Reviews: reviewsList});
+    res.json({ Reviews: reviewsList });
 })
 
 const validateCreateReview = [
@@ -452,10 +453,10 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
         }
 
         const newReview = await spot.createReview({
-                spotId: spot.dataValues.id,
-                userId: spot.dataValues.ownerId,
-                review: review,
-                stars: stars
+            spotId: spot.dataValues.id,
+            userId: spot.dataValues.ownerId,
+            review: review,
+            stars: stars
         })
 
         return res.json(newReview);
