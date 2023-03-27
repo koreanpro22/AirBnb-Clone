@@ -62,7 +62,8 @@ router.get('/', async (req, res, next) => {
     } else if (size < 1 || size > 20) {
         errors.size = "Size must be greater than or equal to 1"
     } else {
-        offset = size * (pageNum - 1);
+        limit = size
+        offset = limit * (pageNum - 1);
     }
 
     if (Object.keys(errors).length) {
@@ -109,7 +110,9 @@ router.get('/', async (req, res, next) => {
     })
 
     return res.json({
-        Spots: spotsList
+        Spots: spotsList,
+        page: pageNum,
+        size: limit
     });
 });
 
@@ -130,9 +133,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
         });
 
         if (!spots) {
-            const err = new Error("Spot couldn't be found")
-            err.status = 404;
-            next(err);
+            return res.status(404).json({
+                message: "Spot couldn't be found"
+            })
         }
 
         let spotsList = []
@@ -521,9 +524,26 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
         });
 
         if (!spot) {
-            const err = new Error("Spot couldn't be found")
-            err.status = 404;
-            next(err);
+            return res.status(404).json({
+                message: "Spot couldn't be found"
+            })
+        }
+
+        const errors = {}
+
+        if (!review) {
+            errors.review = "Review text is required"
+        }
+
+        if (!stars || stars < 1 || stars > 5) {
+            errors.stars = "Stars must be an integer from 1 to 5"
+        }
+
+        if (Object.keys(errors).length) {
+            return res.status(400).json({
+                message: "Bad Request",
+                errors: errors
+            })
         }
 
         const reviews = spot.dataValues.Reviews
@@ -531,11 +551,10 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
         for (let review of reviews) {
             console.log(review.dataValues);
             if (review.dataValues.userId === spot.dataValues.ownerId) {
-                const err = new Error("User already has a review for this spot")
-                err.status = 403;
-                next(err);
+                return res.status(403).json({
+                    message: "User already has a review for this spot"
+                })
             }
-
         }
 
         const newReview = await spot.createReview({
@@ -561,6 +580,14 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
     if (user) {
 
+        const spot = await Spot.findByPk(id);
+
+        if (!spot) {
+            res.status(404).json({
+                "message": "Spot couldn't be found"
+              })
+        };
+
         const bookings = await Booking.unscoped().findAll({
             include: [{
                 attributes: ['id', 'firstName', 'lastName'],
@@ -578,7 +605,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
         }
 
         for (booking of bookingsList) {
-            if (booking.User.id !== user.id) {
+            if (booking.userId !== user.id) {
                 delete booking.id
                 delete booking.User
                 delete booking.userId

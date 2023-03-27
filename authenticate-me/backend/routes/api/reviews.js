@@ -160,13 +160,12 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
             }
 
             if (!stars || stars > 5 || stars < 1) {
-                err.errors.review = "Stars must be an integer from 1 to 5"
+                err.errors.stars = "Stars must be an integer from 1 to 5"
             }
 
-            if (Object.keys(err).length) {
+            if (Object.keys(err.errors).length) {
                 return res.status(400).json(err);
             }
-
 
             await reviewObj.update({
                 review: review,
