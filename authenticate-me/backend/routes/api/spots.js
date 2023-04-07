@@ -72,7 +72,7 @@ router.get('/', async (req, res, next) => {
             errors: errors
         })
     }
-    console.log(size)
+
 
 
     const spots = await Spot.findAll({
@@ -227,7 +227,7 @@ router.post('/', requireAuth, validateCreateSpot, async (req, res, next) => {
 
     if (user) {
 
-        console.log(user);
+
         const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
         const err = {
@@ -463,7 +463,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
     let reviewsList = [];
 
-    console.log(spotObj);
+
 
     for (let review of reviews) {
 
@@ -491,7 +491,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
         review.ReviewImages = reviewimagelist;
 
         reviewsList.push(review);
-        console.log(reviewsList);
+
 
     }
 
@@ -549,7 +549,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
         const reviews = spot.dataValues.Reviews
 
         for (let review of reviews) {
-            console.log(review.dataValues);
+
             if (review.dataValues.userId === spot.dataValues.ownerId) {
                 return res.status(403).json({
                     message: "User already has a review for this spot"
@@ -677,7 +677,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
                 errors: {}
             }
 
-            console.log(bookingObj)
 
             let bookingStart = Date.parse(bookingObj.startDate);
             let bookingEnd = Date.parse(bookingObj.endDate);
