@@ -17,20 +17,20 @@ module.exports = {
         endDate: '2023-02-01'
       },
       {
-        spotId: 4,
+        spotId: 2,
         userId: 1,
         startDate: '2023-02-01',
         endDate: '2023-03-01'
       },
       {
-        spotId: 2,
+        spotId: 3,
         userId: 2,
         startDate: '2023-04-01',
         endDate: '2023-05-01'
       },
       {
-        spotId: 3,
-        userId: 3,
+        spotId: 4,
+        userId: 2,
         startDate: '2023-02-01',
         endDate: '2023-03-01'
       }
