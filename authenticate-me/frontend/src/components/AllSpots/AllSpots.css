@@ -1,0 +1,14 @@
+.spot-gallery {
+    display: flex;
+    flex-flow: row wrap;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+}
+
+.body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px dotted black;
+}

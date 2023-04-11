@@ -1,0 +1,7 @@
+.detail-box {
+    border: 2px solid black ;
+    display: flex;
+    flex-flow: column;
+    width: 20%;
+    margin: 20px;
+}
