@@ -42,11 +42,12 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="signup-page">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="signup-form">
         <label>
-          Email
+          Email:
+          <span> </span>
           <input
             type="text"
             value={email}
@@ -54,9 +55,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="error-text">{errors.email}</p>}
         <label>
-          Username
+          Username:
+          <span> </span>
           <input
             type="text"
             value={username}
@@ -64,9 +66,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="error-text">{errors.username}</p>}
         <label>
-          First Name
+          First Name:
+          <span> </span>
           <input
             type="text"
             value={firstName}
@@ -74,9 +77,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
+        {errors.firstName && <p className="error-text">{errors.firstName}</p>}
         <label>
-          Last Name
+          Last Name:
+          <span> </span>
           <input
             type="text"
             value={lastName}
@@ -84,9 +88,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
+        {errors.lastName && <p className="error-text">{errors.lastName}</p>}
         <label>
-          Password
+          Password:
+          <span> </span>
           <input
             type="password"
             value={password}
@@ -94,9 +99,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="error-text">{errors.password}</p>}
         <label>
-          Confirm Password
+          Confirm Password:
+          <span> </span>
           <input
             type="password"
             value={confirmPassword}
@@ -105,11 +111,11 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
+          <p className="error-text">{errors.confirmPassword}</p>
         )}
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

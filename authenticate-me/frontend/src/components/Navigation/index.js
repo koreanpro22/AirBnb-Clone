@@ -10,14 +10,21 @@ function Navigation({ isLoaded }) {
   return (
     <div className='nav-bar'>
       <div>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/">
+          <i class="fa-sharp fa-solid fa-house">
+            AirBnb-Clone
+          </i>
+        </NavLink>
       </div>
       {isLoaded && (
         <div>
+          <NavLink to='/spots/new'>
+              Create a New Spot
+          </NavLink>
           <ProfileButton user={sessionUser} />
         </div>
       )
-    }
+      }
     </div>
   );
 }

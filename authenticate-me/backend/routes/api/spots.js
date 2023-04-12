@@ -215,6 +215,7 @@ router.get('/:spotId', async (req, res, next) => {
 
     delete spot.Reviews
     delete spot.User
+    // console.log('routes spot ', spot.Spotimages);
 
     return res.json(spot);
 })

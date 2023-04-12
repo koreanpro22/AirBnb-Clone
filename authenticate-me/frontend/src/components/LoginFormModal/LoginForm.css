@@ -1,0 +1,30 @@
+.login-page {
+    display: flex;
+    flex-flow: column;
+    width: 800px;
+    height: 300px;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.login-form {
+    display: flex;
+    flex-flow: column;
+    /* margin: 10px 0px; */
+}
+
+label {
+    margin: 10px;
+}
+
+.login-button {
+    width: fit-content;
+    align-self: center;
+}
+.demo-button {
+    margin-top: 20px;
+}
+
+.error-text {
+    color: red
+}

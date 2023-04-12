@@ -1,0 +1,8 @@
+.small-images-box {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.small-image {
+    width: 50%;
+}

@@ -1,0 +1,20 @@
+
+
+
+.images-box {
+    width: 90%;
+    border: 1px solid black;
+    display: flex;
+}
+
+.big-image {
+    object-fit: fill;
+    width: 50%;
+     /* height: 550px; */
+}
+
+.small-images {
+    border: 1px solid blue;
+    width: 50%;
+    height: 50%;
+}

@@ -25,11 +25,11 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="login-page">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
+      <form onSubmit={handleSubmit} className="login-form">
+        <label className="username">
+          Username or Email: <span> </span>
           <input
             type="text"
             value={credential}
@@ -37,8 +37,8 @@ function LoginFormModal() {
             required
           />
         </label>
-        <label>
-          Password
+        <label className="password">
+          Password: <span> </span>
           <input
             type="password"
             value={password}
@@ -47,11 +47,12 @@ function LoginFormModal() {
           />
         </label>
         {errors.credential && (
-          <p>{errors.credential}</p>
+          <p className="error-text">{errors.credential}</p>
         )}
-        <button type="submit">Log In</button>
+        <button className='login-button' type="submit">Log In</button>
       </form>
-    </>
+      <button className="demo-button">Demo User</button>
+    </div>
   );
 }
 

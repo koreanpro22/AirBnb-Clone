@@ -1,4 +1,4 @@
-.signup-page {
+.create-spot-form-page {
     display: flex;
     flex-flow: column;
     width: 800px;
@@ -7,8 +7,12 @@
     /* justify-content: center; */
 }
 
-.signup-form {
+.create-spot-form {
     display: flex;
     flex-flow: column;
     /* margin: 10px 0px; */
+}
+
+form > div {
+    border: 1px dotted black;
 }

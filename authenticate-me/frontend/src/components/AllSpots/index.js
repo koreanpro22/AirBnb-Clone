@@ -15,7 +15,6 @@ function AllSpots() {
         dispatch(getSpotsThunk());
     }, [dispatch]);
 
-    // console.log('weird bug', allSpots);
 
 
     if (!allSpotsObj) return null
