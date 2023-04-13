@@ -17,14 +17,14 @@ const SpotById = () => {
     const reviews = Object.values(reviewsObj);
 
     useEffect(() => {
-        dispatch(getSpotByIdThunk(id));
-    }, []);
-
-    useEffect(() => {
         dispatch(getReviewsBySpotIdThunk(id));
     }, []);
 
-    if (!spot) return null
+    useEffect(() => {
+        dispatch(getSpotByIdThunk(id));
+    }, []);
+
+    if (!spot || !spot.Owner) return null
     let spotImages;
     let previewImg = [];
     let nonPreviewImages = [];
@@ -59,7 +59,6 @@ const SpotById = () => {
                         {numReviews
                             ? <p><i className="fa-solid fa-star"></i>{spot.avgRating} - {numReviews} reviews</p>
                             : <p><i className="fa-solid fa-star"></i> New</p>
-
                         }
                     </div>
                     <button>Reserve</button>

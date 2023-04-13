@@ -27,7 +27,7 @@ function App() {
             <CreateSpotForm />
           </Route>
           <Route path='/spots/owned'>
-            <UserSpots />
+            <UserSpots owned={true}/>
           </Route>
           <Route path='/spots/:id'>
             <SpotById />

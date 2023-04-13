@@ -5,6 +5,7 @@
     top: 58px;
     right: 10px;
     background-color: lightgrey;
+    z-index: 1;
 }
 
 .dropdown-button {
