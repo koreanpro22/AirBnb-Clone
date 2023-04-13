@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
@@ -8,6 +9,7 @@ import './ProfileButton.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -35,6 +37,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push('/')
     closeMenu();
   };
 
@@ -48,12 +51,13 @@ function ProfileButton({ user }) {
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <div className="profile-box">
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
+            <p>{user.username}</p>
+            <p>{user.firstName} {user.lastName}</p>
+            <p>{user.email}</p>
+            <p><NavLink to='/spots/owned'>Manage Spots</NavLink></p>
+            <p>
               <button onClick={logout}>Log Out</button>
-            </li>
+            </p>
           </div>
         ) : (
           <div className="profile-box">

@@ -25,10 +25,16 @@ const SpotById = () => {
     }, []);
 
     if (!spot) return null
+    let spotImages;
+    let previewImg = [];
+    let nonPreviewImages = [];
 
-    const spotImages = spot.Spotimages;
-    let previewImg = spotImages.find(i => i.preview === true);
-    const nonPreviewImages = spotImages.filter(i => i.preview === false)
+    spotImages = spot.Spotimages;
+
+    if (spotImages && spotImages.length > 0) {
+        previewImg = spotImages.find(i => i.preview === true);
+        nonPreviewImages = spotImages.filter(i => i.preview === false)
+    }
 
     const numReviews = reviews.length
 

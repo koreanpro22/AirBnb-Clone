@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './CreateSpotForm.css';
 import { useHistory } from "react-router";
+import { createSpotThunk } from "../../store/spot";
 
 
 function CreateSpotForm() {
@@ -19,6 +20,7 @@ function CreateSpotForm() {
     // const { closeModal } = useModal();
 
     const sessionUser = useSelector(state => state.session.user);
+    const currentSpot = useSelector(state => state.spot.singleSpot);
 
     if (!sessionUser) {
         history.push('/');
@@ -27,6 +29,27 @@ function CreateSpotForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const spot = {
+            address,
+            city,
+            state,
+            country,
+            lat: 1,
+            lng: 1,
+            name: title,
+            description,
+            price
+        }
+
+        dispatch(createSpotThunk(spot))
+        console.log('current spot', currentSpot)
+        history.push(`/spots/${currentSpot.id}`)
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) {
+        //       setErrors(data.errors);
+        //     }
+        //   });
 
     };
 
