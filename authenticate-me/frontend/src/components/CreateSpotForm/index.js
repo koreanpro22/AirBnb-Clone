@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './CreateSpotForm.css';
 import { useHistory } from "react-router";
 import { createSpotThunk } from "../../store/spot";
+import { getSpotsThunk } from '../../store/spot';
 
 
 function CreateSpotForm() {
@@ -22,12 +23,17 @@ function CreateSpotForm() {
     const sessionUser = useSelector(state => state.session.user);
     const currentSpot = useSelector(state => state.spot.singleSpot);
 
+    useEffect(() => {
+        dispatch(getSpotsThunk());
+    }, [dispatch]);
+
+
     if (!sessionUser) {
         history.push('/');
         // alert('You must be logged in!');
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const spot = {
             address,
@@ -41,9 +47,8 @@ function CreateSpotForm() {
             price
         }
 
-        dispatch(createSpotThunk(spot))
-        console.log('current spot', currentSpot)
-        history.push(`/spots/${currentSpot.id}`)
+        const res = await dispatch(createSpotThunk(spot))
+        history.push(`/spots/${res.id}`)
         // .catch(async (res) => {
         //     const data = await res.json();
         //     if (data && data.errors) {

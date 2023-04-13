@@ -71,9 +71,8 @@ export const createSpotThunk = (spot) => async (dispatch) => {
         const spot = await res.json();
         console.log('spot created' , res)
         dispatch(createSpot(spot));
-
+        return spot;
     }
-    return res;
 }
 
 export const deleteSpotThunk = (spotId) => async (dispatch) => {
