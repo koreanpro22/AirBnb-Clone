@@ -14,6 +14,9 @@ const SingleSpotDetail = ({ spot, key, owned }) => {
 
   const handleUpdate = (e) => {
     e.stopPropagation();
+    console.log('handling update')
+    console.log(spot.id)
+    history.push(`/spots/${spot.id}/edit`);
 
   }
 

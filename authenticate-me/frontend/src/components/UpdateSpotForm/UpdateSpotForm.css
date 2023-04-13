@@ -1,0 +1,18 @@
+.update-spot-form-page {
+    display: flex;
+    flex-flow: column;
+    width: 800px;
+    height: 400px;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.update-spot-form {
+    display: flex;
+    flex-flow: column;
+    /* margin: 10px 0px; */
+}
+
+form > div {
+    border: 1px dotted black;
+}

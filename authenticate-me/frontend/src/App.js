@@ -7,6 +7,7 @@ import AllSpots from "./components/AllSpots";
 import SpotById from "./components/SpotById";
 import CreateSpotForm from "./components/CreateSpotForm";
 import UserSpots from "./components/UserSpots";
+import UpdateSpotForm from "./components/UpdateSpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,10 @@ function App() {
             <CreateSpotForm />
           </Route>
           <Route path='/spots/owned'>
-            <UserSpots owned={true}/>
+            <UserSpots owned={true} />
+          </Route>
+          <Route path='/spots/:id/edit'>
+            <UpdateSpotForm />
           </Route>
           <Route path='/spots/:id'>
             <SpotById />
