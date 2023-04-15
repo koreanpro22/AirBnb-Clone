@@ -3,8 +3,8 @@ import './SmallImages.css';
 
 const SmallImages = ({ images }) => {
 
-    console.log('small images')
-    console.log(images)
+    // console.log('small images')
+    // console.log(images)
 
     return (
             <div className='small-images-box'>

@@ -22,7 +22,7 @@ function UserSpots({ owned }) {
         return s.ownerId === sessionUser.id
     })
     // console.log(allSpotsObj);
-    console.log(userSpots);
+    // console.log(userSpots);
 
     if (!sessionUser) {
         return history.push('/');

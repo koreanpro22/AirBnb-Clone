@@ -1,4 +1,6 @@
-
+.spot-id-card {
+    width: 100%;
+}
 
 
 .images-box {
@@ -17,4 +19,8 @@
     border: 1px solid blue;
     width: 50%;
     height: 50%;
+}
+
+.spot-details-reviews {
+    border: 1px dotted black;
 }

@@ -438,6 +438,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 //Get all Reviews by a Spot's id
 router.get('/:spotId/reviews', async (req, res, next) => {
 
+    const { user } = req
     const id = req.params.spotId;
 
     const spot = await Spot.findByPk(id, {
@@ -447,7 +448,10 @@ router.get('/:spotId/reviews', async (req, res, next) => {
                 model: Review,
                 attributes: {
                     exclude: []
-                }
+                },
+                include: [
+                    { model: User }
+                ]
             }
         ]
     })
@@ -458,7 +462,10 @@ router.get('/:spotId/reviews', async (req, res, next) => {
           })
     }
 
+
+
     const spotObj = spot.toJSON();
+    
     let reviews = spotObj.Reviews;
 
 
@@ -467,12 +474,6 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
 
     for (let review of reviews) {
-
-        review.User = {
-            id: spotObj.User.id,
-            firstName: spotObj.User.firstName,
-            lastName: spotObj.User.lastName
-        }
 
         let id = review.id;
 
@@ -550,8 +551,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
         const reviews = spot.dataValues.Reviews
 
         for (let review of reviews) {
-
-            if (review.dataValues.userId === spot.dataValues.ownerId) {
+            console.log(review)
+            console.log(user);
+            if (review.dataValues.userId === user.dataValues.id) {
                 return res.status(403).json({
                     message: "User already has a review for this spot"
                 })
@@ -560,7 +562,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
         const newReview = await spot.createReview({
             spotId: spot.dataValues.id,
-            userId: spot.dataValues.ownerId,
+            userId: user.dataValues.id,
             review: review,
             stars: stars
         })

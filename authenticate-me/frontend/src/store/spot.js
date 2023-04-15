@@ -79,10 +79,11 @@ export const createSpotThunk = (spot) => async (dispatch) => {
 
     if (res.ok) {
         const spot = await res.json();
-        console.log('spot created' , res)
+        // console.log('spot created' , res)
         dispatch(createSpot(spot));
         return spot;
     }
+
 }
 
 export const deleteSpotThunk = (spotId) => async (dispatch) => {
@@ -97,8 +98,8 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
 
 
 export const updateSpotThunk = (spot) => async (dispatch) => {
-    console.log('Begin thunk spot', spot)
-    console.log(spot.id)
+    // console.log('Begin thunk spot', spot)
+    // console.log(spot.id)
     const res = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
@@ -145,7 +146,7 @@ const spotReducer = (state = initialState, action) => {
         }
         case UPDATE_SPOT: {
             const newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot } }
-            console.log('new state ', newState)
+            // console.log('new state ', newState)
             newState.allSpots[action.spot.id] = { ...newState.allSpots[action.spotId], ...action.spot }
         }
         default: {

@@ -5,6 +5,7 @@ import './SpotById.css'
 import { useHistory, useParams } from 'react-router';
 import SmallImages from '../SmallImages/SmallImages';
 import { getReviewsBySpotIdThunk } from '../../store/review';
+import SpotReviews from './SpotReviews';
 
 const SpotById = () => {
     const dispatch = useDispatch();
@@ -16,15 +17,20 @@ const SpotById = () => {
     const spot = useSelector(state => state.spot.singleSpot);
     const reviews = Object.values(reviewsObj);
 
+
     useEffect(() => {
         dispatch(getReviewsBySpotIdThunk(id));
-    }, []);
+    }, [dispatch, id]);
 
     useEffect(() => {
         dispatch(getSpotByIdThunk(id));
-    }, []);
+    }, [dispatch, id]);
 
-    if (!spot || !spot.Owner) return null
+    // console.log('index reviews', reviewsObj)
+    // console.log('session user', sessionUser)
+
+    if (!spot || !spot.Owner || !reviews) return null
+
     let spotImages;
     let previewImg = [];
     let nonPreviewImages = [];
@@ -38,8 +44,12 @@ const SpotById = () => {
 
     const numReviews = reviews.length
 
+    const handleReserve = () => {
+        alert("Feature coming soon!");
+    }
+
     return (
-        <div>
+        <div className='spot-id-card'>
             <h1>{spot.name}</h1>
             <p>{spot.city}, {spot.state}, {spot.country}</p>
             <div className='images-box'>
@@ -57,20 +67,24 @@ const SpotById = () => {
                     <div className='price-rating-review'>
                         <p>${spot.price.toFixed(2)} per night</p>
                         {numReviews
-                            ? <p><i className="fa-solid fa-star"></i>{spot.avgRating} - {numReviews} reviews</p>
+                            ? <p><i className="fa-solid fa-star"></i>{spot.avgRating} · {numReviews} {numReviews > 1 ? 'reviews' : 'review'}</p>
                             : <p><i className="fa-solid fa-star"></i> New</p>
                         }
                     </div>
-                    <button>Reserve</button>
+                    <button onClick={handleReserve}>Reserve</button>
                 </div>
             </div>
-            <div>
+            <div className='spot-details-reviews'>
+                {/* {console.log('reviews reached!')} */}
                 {numReviews
                     ? <div>
-                        <p><i className="fa-solid fa-star"></i>{spot.avgRating} - {numReviews} reviews</p>
-                        {/*~~~~~~~~~ Individual reviews component ~~~~~~~~*/}
+                        <p><i className="fa-solid fa-star"></i>{spot.avgRating} · {numReviews} {numReviews > 1 ? 'reviews' : 'review'}</p>
+                        <SpotReviews reviews={reviews} spotId={id}/>
                     </div>
-                    : <p><i className="fa-solid fa-star"></i> New</p>
+                    : <div>
+                        <p><i className="fa-solid fa-star"></i> New</p>
+                        <SpotReviews reviews={reviews} first={true} spotId={id}/>
+                    </div>
                 }
             </div>
         </div>

@@ -47,16 +47,17 @@ function CreateSpotForm() {
             price
         }
 
-        const res = await dispatch(createSpotThunk(spot))
-        history.push(`/spots/${res.id}`)
-        // .catch(async (res) => {
-        //     const data = await res.json();
-        //     if (data && data.errors) {
-        //       setErrors(data.errors);
-        //     }
-        //   });
+        dispatch(createSpotThunk(spot))
+        .then((res) => history.push(`/spots/${res.id}`))
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) {
+              setErrors(data.errors);
+            }
+          });
+          console.log(errors);
 
-    };
+        };
 
     return (
         <div className="create-spot-form-page">
@@ -150,7 +151,7 @@ function CreateSpotForm() {
                         placeholder="Price per night (USD)"
                         required
                     />
-                    {errors.title && <p className="error-text">{errors.title}</p>}
+                    {errors.price && <p className="error-text">{errors.price}</p>}
                 </div>
                 <div>
                     <h4>Liven up your spot with photos</h4>

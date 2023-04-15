@@ -7,14 +7,14 @@ import { getSpotsThunk, getSpotByIdThunk } from '../../store/spot';
 
 
 function UpdateSpotForm() {
-    console.log('Update form reached!')
+    // console.log('Update form reached!')
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
     const sessionUser = useSelector(state => state.session.user);
     const currSpot = useSelector(state => state.spot.singleSpot);
-    
-    console.log('current spot', currSpot)
+
+    // console.log('current spot', currSpot)
     useEffect(() => {
         dispatch(getSpotsThunk());
     }, [dispatch]);
@@ -79,7 +79,7 @@ function UpdateSpotForm() {
 
     };
 
-    console.log('Form loading')
+    // console.log('Form loading')
 
 
     return (

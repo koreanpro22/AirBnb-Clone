@@ -196,6 +196,7 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
     if (user) {
 
         const reviewObj = await Review.unscoped().findByPk(id);
+        console.log(reviewObj)
 
         if (!reviewObj) {
             const err = new Error("Review couldn't be found")
