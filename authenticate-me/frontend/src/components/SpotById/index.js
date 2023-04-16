@@ -66,8 +66,8 @@ const SpotById = () => {
                 <div className='spot-info'>
                     <div className='price-rating-review'>
                         {console.log('spot', spot)}
-                        {console.log('spot price', spot.price)}
-                        <p>${(spot.price).toFixed(2)} per night</p>
+                        {console.log('spot price', typeof(spot.price))}
+                        <p>${Number(spot.price).toFixed(2)} per night</p>
                         {numReviews
                             ? <p><i className="fa-solid fa-star"></i>{spot.avgRating} · {numReviews} {numReviews > 1 ? 'reviews' : 'review'}</p>
                             : <p><i className="fa-solid fa-star"></i> New</p>
