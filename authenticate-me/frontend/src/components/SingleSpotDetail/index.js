@@ -24,7 +24,7 @@ const SingleSpotDetail = ({ spot, key, owned }) => {
   spot.previewImage ? previewImg = spot.previewImage : previewImg = 'https://www.escapeauthority.com/wp-content/uploads/2116/11/No-image-found.jpg'
 
   return (
-    <div>
+    <div className='all-spots'>
       <div className="detail-box" onClick={handleClick}>
         <div className='image-box tooltip'>
           <span className='tooltiptext'>{spot.name}</span>

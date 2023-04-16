@@ -12,3 +12,11 @@
 }
 
 /* text-decoration: none; */
+.right-nav {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row;
+    /* justify-content: center; */
+    align-items: center;
+
+}
