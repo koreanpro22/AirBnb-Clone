@@ -65,7 +65,7 @@ const SpotById = () => {
                 </div>
                 <div className='spot-info'>
                     <div className='price-rating-review'>
-                        <p>${Number(spot.price).toFixed(2)} per night</p>
+                        <p>${spot.price.toFixed(2)} per night</p>
                         {numReviews
                             ? <p><i className="fa-solid fa-star"></i>{spot.avgRating} · {numReviews} {numReviews > 1 ? 'reviews' : 'review'}</p>
                             : <p><i className="fa-solid fa-star"></i> New</p>
