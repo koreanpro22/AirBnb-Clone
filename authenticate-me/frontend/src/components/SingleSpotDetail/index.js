@@ -48,7 +48,7 @@ const SingleSpotDetail = ({ spot, key, owned }) => {
           <OpenModalButton
             buttonText='Delete Spot'
             modalComponent={<DeleteModal spotId={spot.id}/>}
-          />
+            />
         </div>
       }
     </div>

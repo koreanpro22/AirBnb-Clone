@@ -1,0 +1,73 @@
+.delete-review-modal {
+    border: 2px solid red;
+    border-radius: 10px;
+}
+
+.delete-review {
+    border: 1px solid black;
+    padding: 20px;
+    /* margin: 20px; */
+    display: flex;
+    flex-flow: column;
+    background-color: whitesmoke;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-review > h2 {
+    margin: 2px;
+}
+
+.delete-review > p {
+    font-weight: bold;
+}
+
+.yes-no-button {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    justify-content: center;
+    align-self: center;
+}
+
+.yes-no-button > button {
+    padding: 5px 5px;
+    margin: 10px 0px;
+    box-shadow: 1px 2px 2px;
+}
+
+.create-review {
+    border: 1px solid black;
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    background-color: whitesmoke;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-review > h2 {
+    margin: 5px;
+}
+
+.create-review-button {
+    padding: 10px 5px;
+    margin: 10px 0px;
+    width: 100%;
+}
+
+button {
+    box-shadow: 1px 2px 2px;
+}
+
+
+
+.create-review-form {
+    border: 1px solid black;
+    width: 268px;
+    display: flex;
+    flex-flow: column;
+    /* margin: 10px 0px; */
+    padding: 0px 10px;
+    align-items: center;
+}

@@ -82,6 +82,7 @@ function SpotReviews({ reviews, first, spotId }) {
                                             <div>
                                                 <OpenModalButton
                                                     buttonText='Delete Review'
+                                                    // className='delete-review-modal'
                                                     modalComponent={<DeleteReviewModal reviewId={r.id} spotId={spotId} />}
                                                 />
                                             </div>}
