@@ -70,7 +70,7 @@ function SpotReviews({ reviews, first, spotId }) {
                     <p>Be the first to post a review!</p>
                 </div>) :
                 (<div>
-                    {reviews.map(r => {
+                    {reviews.toReversed().map(r => {
                         return !r.User ? null :
                             (
                                 <div>
