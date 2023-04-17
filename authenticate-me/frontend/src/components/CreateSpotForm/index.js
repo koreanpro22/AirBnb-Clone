@@ -18,6 +18,11 @@ function CreateSpotForm() {
     const [price, setPrice] = useState("");
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState({});
+    const [img1, setImg1] = useState("");
+    const [img2, setImg2] = useState("");
+    const [img3, setImg3] = useState("");
+    const [img4, setImg4] = useState("");
+
     // const { closeModal } = useModal();
 
     const sessionUser = useSelector(state => state.session.user);
@@ -50,6 +55,7 @@ function CreateSpotForm() {
         if (description.length < 30) errors.description = 'Description needs a minimum of 30 characters';
         if (!(+price)) errors.price = 'Price must be valid integer'
         if (!price) errors.price = 'Price is required';
+        if (!previewImage) errors.prevImg = 'Preview Image is required';
 
         if (!Object.values(errors).length) {
 
@@ -63,7 +69,7 @@ function CreateSpotForm() {
                 name: title,
                 description,
                 price
-            })) .then((res) => history.push(`/spots/${res.id}`))
+            })).then((res) => history.push(`/spots/${res.id}`))
         }
         setErrors(errors)
 
@@ -175,14 +181,43 @@ function CreateSpotForm() {
                     <div>
                         <h4>Liven up your spot with photos</h4>
                         <p>Submit a link to at least one photo to publish your spot.</p>
-                        <input
-                            type="text"
-                            value={previewImage}
-                            onChange={(e) => setPreviewImage(e.target.value)}
-                            placeholder="Preview Image Url"
-
-                        />
-                        {errors.title && <p className="error-text">{errors.title}</p>}
+                        <div className="image-inputs">
+                            <input
+                                type="text"
+                                value={previewImage}
+                                onChange={(e) => setPreviewImage(e.target.value)}
+                                placeholder="Preview Image Url"
+                            />
+                            {errors.prevImg && <p className="error-text">{errors.prevImg}</p>}
+                            <input
+                                type="text"
+                                value={img1}
+                                onChange={(e) => setImg1(e.target.value)}
+                                placeholder="Image Url"
+                            />
+                            {/* {errors.prevImg && <p className="error-text">{errors.prevImg}</p>} */}
+                            <input
+                                type="text"
+                                value={img2}
+                                onChange={(e) => setImg2(e.target.value)}
+                                placeholder="Image Url"
+                            />
+                            {/* {errors.prevImg && <p className="error-text">{errors.prevImg}</p>} */}
+                            <input
+                                type="text"
+                                value={img3}
+                                onChange={(e) => setImg3(e.target.value)}
+                                placeholder="Image Url"
+                            />
+                            {/* {errors.prevImg && <p className="error-text">{errors.prevImg}</p>} */}
+                            <input
+                                type="text"
+                                value={img4}
+                                onChange={(e) => setImg4(e.target.value)}
+                                placeholder="Image Url"
+                            />
+                            {/* {errors.prevImg && <p className="error-text">{errors.prevImg}</p>} */}
+                        </div>
                     </div>
                     <button type="submit" className="submit-spot-form-button">Create Spot</button>
                 </form>

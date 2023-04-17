@@ -12,3 +12,23 @@
     color: gray;
     font-size: 14px;
 }
+
+.delete-review-button {
+    background-color: red;
+    color: white;
+}
+
+.no-delete-review-button {
+    background-color: darkgrey;
+    color: white;
+}
+
+.delete-spot-button {
+background-color: red;
+    color: white;
+}
+
+.no-delete-spot-button {
+    background-color: darkgrey;
+    color: white;
+}

@@ -51,6 +51,8 @@ function SpotReviews({ reviews, first, spotId }) {
         "12": "December"
     }
 
+    // if (!sessionUser) return null
+
     // console.log(sessionUser)
     // console.log('spot reviews', reviews)
     // console.log('prop reviews', reviews)
@@ -63,7 +65,7 @@ function SpotReviews({ reviews, first, spotId }) {
                         modalComponent={<CreateReviewModal spotId={spotId} />}
                     />
                 </div>}
-            {!reviews.length && sessionUser.id !== spot.ownerId ?
+            {sessionUser && !reviews.length && sessionUser.id !== spot.ownerId ?
                 (<div>
                     <p>Be the first to post a review!</p>
                 </div>) :

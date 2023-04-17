@@ -20,7 +20,7 @@ function Navigation({ isLoaded }) {
         }}
         >
           <i class="fa-sharp fa-solid fa-house">
-            AirBnb-Clone
+            SkyBnb
           </i>
         </NavLink>
       </div>

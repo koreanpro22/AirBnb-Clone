@@ -42,3 +42,13 @@
     width: fit-content;
     align-self: center;
 }
+
+.image-inputs {
+    display: flex;
+    flex-flow: column;
+}
+
+.image-inputs > input {
+    margin: 4px;
+
+}
