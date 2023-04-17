@@ -39,7 +39,7 @@ const SingleSpotDetail = ({ spot, key, owned }) => {
             <span className='bold'><i className="fa-solid fa-star"></i> {+spot.avgRating <= 5 ? spot.avgRating : 'New'}</span>
           </p>
         </div>
-        <div className='price'><span>${spot.price.toFixed(2)}</span> night</div>
+        <div className='price'><span>${Number(spot.price).toFixed(2)}</span> night</div>
       </div>
       {
         owned === true &&
