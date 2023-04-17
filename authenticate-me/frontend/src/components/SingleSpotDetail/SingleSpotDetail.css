@@ -71,14 +71,12 @@
     flex-flow: column;
 }
 
-.update-delete-buttons {
-    /* border: 1px solid black; */
-}
 
 .update-button {
     margin: 0px 12px;
     color: white;
     background-color: grey;
+    /* box-shadow: 1px 2px 2px; */
 }
 
 .price > span {
@@ -88,4 +86,34 @@
 
 .bold {
     font-weight: bold;
+}
+
+.delete-spot-modal {
+    /* margin: 20px; */
+    border: 1px solid black;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.delete-spot-modal > h2 {
+    margin: 5PX;
+}
+
+.delete-spot-buttons {
+    margin: 10px 0px;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.delete-spot-buttons > button {
+    padding: 5px 5px;
+    margin: 10px 0px;
+    box-shadow: 1px 2px 2px;
+}
+
+.modals {
+    /* border-radius: 10px; */
 }

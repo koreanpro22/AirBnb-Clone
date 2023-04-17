@@ -46,6 +46,10 @@
     padding: 0px 0px 0px 8px;
 }
 
+.dropdown-button :hover {
+    cursor: pointer;
+}
+
 .dropdown-box {
     margin-left: 10px;
 }
@@ -69,6 +73,7 @@
     color: white;
 }
 
+
 .error-text {
     margin: 5px 10px;
     font-size: 12px;
@@ -77,4 +82,3 @@
 .profile-box-button :hover {
     cursor: pointer;
 }
-

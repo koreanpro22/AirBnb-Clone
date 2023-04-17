@@ -33,13 +33,16 @@ function CreateReviewModal({ spotId }) {
 
 
   return (
-    <div>
+    <div className="create-review">
       <h2>How was your stay?</h2>
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={handleSubmit} className="create-review-form">
         <label className="review">
-          Review: <span> </span>
+          {/* Review: <span> </span> */}
           <textarea
             type="text"
+            rows={7}
+            cols={31}
+
             placeholder="Leave your review here..."
             value={review}
             onChange={(e) => setReview(e.target.value)}
@@ -47,16 +50,41 @@ function CreateReviewModal({ spotId }) {
           />
         </label>
         <label className="stars">
-          Stars: <span> </span>
-          <input
+          {/* <input
             type="text"
             value={stars}
             onChange={(e) => setStars(e.target.value)}
             required
-          />
+            /> */}
+            {stars > 0 ?
+            <i class="fa-sharp fa-solid fa-star" onClick={() => setStars(1)}></i>
+            :
+            <i class="fa-sharp fa-regular fa-star" onClick={() => setStars(1)}></i>
+            }
+            {stars > 1 ?
+            <i class="fa-sharp fa-solid fa-star" onClick={() => setStars(2)}></i>
+            :
+            <i class="fa-sharp fa-regular fa-star" onClick={() => setStars(2)}></i>
+            }
+            {stars > 2 ?
+            <i class="fa-sharp fa-solid fa-star" onClick={() => setStars(3)}></i>
+            :
+            <i class="fa-sharp fa-regular fa-star" onClick={() => setStars(3)}></i>
+            }
+            {stars > 3 ?
+            <i class="fa-sharp fa-solid fa-star" onClick={() => setStars(4)}></i>
+            :
+            <i class="fa-sharp fa-regular fa-star" onClick={() => setStars(4)}></i>
+            }
+            {stars > 4 ?
+            <i class="fa-sharp fa-solid fa-star" onClick={() => setStars(5)}></i>
+            :
+            <i class="fa-sharp fa-regular fa-star" onClick={() => setStars(5)}></i>
+            }
+            <span></span> Stars
         </label>
         {/* {errors.stars && (<p className="error-text">{errors.stars}</p>)} */}
-        <button className='login-button' type="submit" disabled={(review.length < 10) || !stars}>Submit Your Review</button>
+        <button className='create-review-button' type="submit" disabled={(review.length < 10) || !stars}>Submit Your Review</button>
       </form>
     </div>
   )
