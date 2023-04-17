@@ -23,7 +23,8 @@ function AllSpots() {
 
     return (
         <div className='body'>
-            <h1>All Spots</h1>
+            {/* <h1>All Spots</h1> */}<br></br>
+            {/* <h1>All Spots</h1> */}<br></br>
             <div className='spot-gallery'>
                 {allSpots.length > 0 && allSpots.map(s => <SingleSpotDetail spot={s}/>
                 )}

@@ -30,7 +30,7 @@ const deleteReview = (reviewId) => {
 }
 
 export const getReviewsBySpotIdThunk = (spotId) => async (dispatch) => {
-    console.log('get reviews by Id thunk')
+    // console.log('get reviews by Id thunk')
     const res = await fetch(`/api/spots/${spotId}/reviews`);
 
     if (res.ok) {
@@ -85,10 +85,7 @@ const reviewReducer = (state = initialState, action) => {
         case CREATE_REVIEW: {
             const newState = {...state, spot: { ...state.spot }, user: { ...state.user } }
             const review = action.review;
-            // console.log(newState)
-            // console.log(review)
             newState.spot[review.id] = review;
-            // console.log(newState)
             return newState
         }
         case DELETE_REVIEW: {

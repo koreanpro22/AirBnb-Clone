@@ -1,14 +1,94 @@
 .signup-page {
     display: flex;
     flex-flow: column;
-    width: 800px;
-    height: 400px;
+    width: 300px;
+    height: 500px;
     align-items: center;
+    background-color: whitesmoke;
     /* justify-content: center; */
 }
 
 .signup-form {
+    border: 1px solid black;
+    width: 200px;
     display: flex;
     flex-flow: column;
     /* margin: 10px 0px; */
+    padding: 0px 10px;
+}
+
+.signup-button {
+    margin: 10px 0px;
+    width: 80px;
+    align-self: center;
+}
+
+/* Password Error */
+
+.confirm-password-error {
+    display: flex;
+    flex-flow: column;
+    width: 300px;
+    height: 600px;
+    align-items: center;
+    background-color: whitesmoke;
+
+}
+
+.signup-button-one-error {
+    margin: 10px 0px;
+    width: 80px;
+    align-self: center;
+}
+
+/* 1 error */
+
+.signup-page-one-error {
+    display: flex;
+    flex-flow: column;
+    width: 300px;
+    height: 560px;
+    align-items: center;
+    background-color: whitesmoke;
+
+}
+
+.signup-button-one-error {
+    margin: 10px 0px;
+    width: 80px;
+    align-self: center;
+}
+
+/* 2 error */
+
+.signup-page-two-error {
+    display: flex;
+    flex-flow: column;
+    width: 300px;
+    height: 630px;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.signup-button-two-error {
+    margin: 10px 0px;
+    width: 80px;
+    align-self: center;
+}
+
+/* 3 error */
+
+.signup-page-three-error {
+    display: flex;
+    flex-flow: column;
+    width: 300px;
+    height: 700px;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.signup-button-three-error {
+    margin: 10px 0px;
+    width: 80px;
+    align-self: center;
 }

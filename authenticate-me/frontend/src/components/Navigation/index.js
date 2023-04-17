@@ -10,17 +10,33 @@ function Navigation({ isLoaded }) {
   return (
     <div className='nav-bar'>
       <div>
-        <NavLink exact to="/">
+        <NavLink
+        exact to="/"
+        style={() => {
+          return {
+            color: "black",
+            textDecoration: "none"
+          }
+        }}
+        >
           <i class="fa-sharp fa-solid fa-house">
-            AirBnb-Clone
+            SkyBnb
           </i>
         </NavLink>
       </div>
       {isLoaded && (
-        <div>
-          <NavLink to='/spots/new'>
+        <div className='right-nav'>
+          {sessionUser &&
+            <NavLink
+              to='/spots/new'
+              style={() => {
+                return {
+                  color: "black",
+                  textDecoration: "none"
+                }
+              }}>
               Create a New Spot
-          </NavLink>
+            </NavLink>}
           <ProfileButton user={sessionUser} />
         </div>
       )

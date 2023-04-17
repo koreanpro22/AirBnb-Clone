@@ -222,7 +222,7 @@ router.get('/:spotId', async (req, res, next) => {
 
 
 //Create a Spot
-router.post('/', requireAuth, validateCreateSpot, async (req, res, next) => {
+router.post('/', requireAuth, async (req, res, next) => {
 
     const { user } = req;
 
@@ -465,7 +465,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
 
     const spotObj = spot.toJSON();
-    
+
     let reviews = spotObj.Reviews;
 
 

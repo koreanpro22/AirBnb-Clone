@@ -44,20 +44,30 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <div>
-      <button className="dropdown-button"onClick={openMenu}>
+    <div className="dropdown-box">
+      <button className="dropdown-button" onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <div className="profile-box">
-            <p>{user.username}</p>
-            <p>{user.firstName} {user.lastName}</p>
-            <p>{user.email}</p>
-            <p><NavLink to='/spots/owned'>Manage Spots</NavLink></p>
-            <p>
-              <button onClick={logout}>Log Out</button>
-            </p>
+            <div className="profile-username">Hello, {user.username}</div>
+            {/* <p>{user.firstName} {user.lastName}</p> */}
+            <div className="profile-email">{user.email}</div>
+            <div className="profile-line"></div>
+            <div className="profile-manage-spots"><NavLink
+              to='/spots/owned'
+              style={() => {
+                return {
+                  color: "black",
+                  textDecoration: "none"
+                }
+              }}>
+              Manage Spots</NavLink></div>
+            <div className="profile-line"></div>
+            <div className="profile-logout">
+              <button onClick={logout} className="logout-button">Log Out</button>
+            </div>
           </div>
         ) : (
           <div className="profile-box">

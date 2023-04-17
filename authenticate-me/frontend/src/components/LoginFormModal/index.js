@@ -19,45 +19,43 @@ function LoginFormModal() {
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
-          setErrors(data.errors);
+          await setErrors(data.errors);
         }
       });
+
   };
 
   const demoUser = (e) => {
     e.preventDefault();
-    return dispatch(sessionActions.login({ credential: 'test1', password: 'password1'}))
-    .then(closeModal);
+    return dispatch(sessionActions.login({ credential: 'test1', password: 'password1' }))
+      .then(closeModal);
   }
 
+
   return (
-    <div className="login-page">
+    <div className={ Object.values(errors).length ? "failed-login": "login-page"}>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit} className="login-form">
-        <label className="username">
-          Username or Email: <span> </span>
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label className="password">
-          Password: <span> </span>
-          <input
+      <form onSubmit={handleSubmit} className={ Object.values(errors).length ? "failed-form": "login-form"}>
+        <label className="username"> Username or Email: </label>
+        <input
+          type="text"
+          value={credential}
+          onChange={(e) => setCredential(e.target.value)}
+          required
+        />
+        <label className="password"> Password: </label>
+        <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
         {errors.credential && (
           <p className="error-text">{errors.credential}</p>
         )}
-        <button className='login-button' type="submit">Log In</button>
+        <button disabled={(credential.length < 4) || (password.length < 6)} className='login-button' type="submit">Log In</button>
       </form>
-      <button className="demo-button" onClick={demoUser}>Demo User</button>
+      <button className={ Object.values(errors).length ? "failed-demo-button": "demo-button"} onClick={demoUser}>Demo User</button>
     </div>
   );
 }

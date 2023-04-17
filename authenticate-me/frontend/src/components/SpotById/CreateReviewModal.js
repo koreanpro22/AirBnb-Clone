@@ -8,7 +8,7 @@ import { getSpotByIdThunk } from "../../store/spot";
 
 function CreateReviewModal({ spotId }) {
 
-  const [review, setReview] = useState();
+  const [review, setReview] = useState("");
   const [stars, setStars] = useState();
 
   const { closeModal } = useModal();
@@ -34,12 +34,13 @@ function CreateReviewModal({ spotId }) {
 
   return (
     <div>
-      <h2>Post Your Review</h2>
+      <h2>How was your stay?</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <label className="review">
           Review: <span> </span>
-          <input
+          <textarea
             type="text"
+            placeholder="Leave your review here..."
             value={review}
             onChange={(e) => setReview(e.target.value)}
             required
@@ -55,7 +56,7 @@ function CreateReviewModal({ spotId }) {
           />
         </label>
         {/* {errors.stars && (<p className="error-text">{errors.stars}</p>)} */}
-        <button className='login-button' type="submit">Post Review</button>
+        <button className='login-button' type="submit" disabled={(review.length < 10) || !stars}>Submit Your Review</button>
       </form>
     </div>
   )

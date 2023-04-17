@@ -1,18 +1,27 @@
-.update-spot-form-page {
+.city-state-form {
     display: flex;
-    flex-flow: column;
-    width: 800px;
-    height: 400px;
-    align-items: center;
-    /* justify-content: center; */
+    flex-flow: row;
+    /* border: 1px solid black; */
+    gap: 10px;
 }
 
-.update-spot-form {
+.city-box {
     display: flex;
     flex-flow: column;
-    /* margin: 10px 0px; */
+    width: 65%;
+    /* margin: 0px 2px; */
 }
 
-form > div {
-    border: 1px dotted black;
+.state-box {
+    display: flex;
+    flex-flow: column;
+    width: 35%;
+}
+
+.title-input {
+    width: 382px;
+}
+
+.price-input {
+    width: 382px;
 }

@@ -1,16 +1,37 @@
 .login-page {
     display: flex;
     flex-flow: column;
-    width: 800px;
-    height: 300px;
+    width: 360px;
+    height: 340px;
     align-items: center;
     /* justify-content: center; */
+    background-color: whitesmoke;
+}
+
+.failed-login {
+    display: flex;
+    flex-flow: column;
+    width: 360px;
+    height: 340px;
+    align-items: center;
+    /* justify-content: center; */
+    background-color: whitesmoke;
 }
 
 .login-form {
+    border: 1px solid black;
+    width: 268px;
     display: flex;
     flex-flow: column;
     /* margin: 10px 0px; */
+    padding: 0px 10px;
+}
+
+.failed-form {
+    border: 1px solid black;
+    display: flex;
+    flex-flow: column;
+    padding: 0px 10px;
 }
 
 label {
@@ -20,11 +41,24 @@ label {
 .login-button {
     width: fit-content;
     align-self: center;
+    margin: 10px 0px;
 }
 .demo-button {
-    margin-top: 20px;
+    margin-top: 35px;
+}
+
+.failed-demo-button {
+    margin-top: 19px;
 }
 
 .error-text {
     color: red
 }
+/*
+.userName {
+    margin: 5px;
+}
+
+.inputs {
+    margin: 5px;
+} */

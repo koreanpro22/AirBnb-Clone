@@ -21,10 +21,10 @@ const SingleSpotDetail = ({ spot, key, owned }) => {
   }
 
   let previewImg;
-  spot.previewImage ? previewImg = spot.previewImage : previewImg = 'https://www.escapeauthority.com/wp-content/uploads/2116/11/No-image-found.jpg'
+  spot.previewImage ? previewImg = spot.previewImage : previewImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzi4ozl7Ve2KkOWNNXRYDqFL79rx842XNPMFSUK9WwYFCZKJiZjGS25i9xoqirElCeUKL5VFC7MYM&usqp=CAU&ec=48665701'
 
   return (
-    <div>
+    <div className='all-spots'>
       <div className="detail-box" onClick={handleClick}>
         <div className='image-box tooltip'>
           <span className='tooltiptext'>{spot.name}</span>
@@ -32,16 +32,19 @@ const SingleSpotDetail = ({ spot, key, owned }) => {
         </div>
         <div>
           <p className='location-rating'>
-            <span>{spot.city}, {spot.state}</span>
-            <span><i className="fa-solid fa-star"></i> {spot.avgRating}</span>
+            <div className='city-state'>
+            <span>{spot.city},</span>
+            <span>{spot.state}</span>
+            </div>
+            <span className='bold'><i className="fa-solid fa-star"></i> {+spot.avgRating <= 5 ? spot.avgRating : 'New'}</span>
           </p>
         </div>
-        <p className='price'>${spot.price} per night</p>
+        <div className='price'><span>${spot.price.toFixed(2)}</span> night</div>
       </div>
       {
         owned === true &&
-        <div>
-          <button onClick={handleUpdate}>Update</button>
+        <div className='update-delete-buttons'>
+          <button onClick={handleUpdate} className='update-button'>Update</button>
           <OpenModalButton
             buttonText='Delete Spot'
             modalComponent={<DeleteModal spotId={spot.id}/>}
