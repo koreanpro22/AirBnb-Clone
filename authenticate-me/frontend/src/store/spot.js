@@ -109,6 +109,7 @@ export const updateSpotThunk = (spot) => async (dispatch) => {
     if (res.ok) {
         dispatch(updateSpot(spot.id))
     }
+    return res
 }
 
 const initialState = { allSpots: null, singleSpot: null };
@@ -139,9 +140,9 @@ const spotReducer = (state = initialState, action) => {
         }
         case DELETE_SPOT: {
             const newState = { ...state, allSpots: { ...state.allSpots}, singleSpot: {} }
-            console.log(newState);
+            // console.log(newState);
             delete newState.allSpots[action.spotId]
-            console.log('after delete', newState);
+            // console.log('after delete', newState);
             return newState
         }
         case UPDATE_SPOT: {

@@ -30,7 +30,7 @@ const deleteReview = (reviewId) => {
 }
 
 export const getReviewsBySpotIdThunk = (spotId) => async (dispatch) => {
-    console.log('get reviews by Id thunk')
+    // console.log('get reviews by Id thunk')
     const res = await fetch(`/api/spots/${spotId}/reviews`);
 
     if (res.ok) {

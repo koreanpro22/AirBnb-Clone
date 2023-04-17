@@ -6,10 +6,44 @@
     right: 10px;
     background-color: lightgrey;
     z-index: 1;
+    /* margin-left: 10px; */
+    /* align-content: center; */
+    /* width: fit-content; */
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .dropdown-button {
     border-radius: 10px;
     width: 40px;
     height: 30px;
+}
+
+.dropdown-box {
+    margin-left: 10px;
+}
+
+.profile-line {
+    width: 90%;
+    border-bottom: 1px solid black;
+}
+
+.profile-username, .profile-email, .profile-logout {
+    margin: 5px 5px;
+}
+
+.profile-manage-spots {
+    margin: 5px;
+}
+
+.logout-button {
+    border-radius: 10px;
+    background-color: grey;
+    color: white;
+}
+
+.error-text {
+    margin: 5px 10px;
 }

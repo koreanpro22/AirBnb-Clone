@@ -1,8 +1,12 @@
 .small-images-box {
     display: flex;
     flex-flow: row wrap;
+    height: 335px;
 }
 
 .small-image {
-    width: 50%;
+    width: 48%;
+    height: 50%;
+    /* border: 1px solid black; */
+    margin: 2px;
 }

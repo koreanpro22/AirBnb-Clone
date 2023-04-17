@@ -1,0 +1,14 @@
+.review-info {
+    /* border: 1px solid black; */
+    margin: 10px 0px;
+}
+
+.review-info > h3 {
+    margin: 10px 0px 5px;
+    /* font-size: 18px; */
+}
+
+.review-date-created {
+    color: gray;
+    font-size: 14px;
+}

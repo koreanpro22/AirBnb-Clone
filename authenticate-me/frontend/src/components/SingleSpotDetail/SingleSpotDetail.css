@@ -9,7 +9,7 @@
     display: flex;
     flex-flow: column;
     width: 90%;
-    margin: 12px;
+    margin: 10px;
 }
 
 .detail-box :hover {
@@ -24,7 +24,7 @@
 }
 
 .image {
-    width: 100%;
+    width: 222px;
     height: 200px;
     border-radius: 10px;
 }
@@ -37,16 +37,17 @@
 
 .price {
     margin-left: 10px;
+    margin-top: 5px;
 }
 
 .tooltip {
     position: relative;
     display: inline-block;
     /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
-  }
+}
 
-  /* Tooltip text */
-  .tooltip .tooltiptext {
+/* Tooltip text */
+.tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
     background-color: black;
@@ -58,9 +59,33 @@
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
-  }
+}
 
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
     visibility: visible;
-  }
+}
+
+.city-state {
+    display: flex;
+    flex-flow: column;
+}
+
+.update-delete-buttons {
+    /* border: 1px solid black; */
+}
+
+.update-button {
+    margin: 0px 12px;
+    color: white;
+    background-color: grey;
+}
+
+.price > span {
+    font-weight: bold;
+}
+
+
+.bold {
+    font-weight: bold;
+}

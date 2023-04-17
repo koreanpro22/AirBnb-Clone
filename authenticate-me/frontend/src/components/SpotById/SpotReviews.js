@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getReviewsBySpotIdThunk } from '../../store/review';
 import { getSpotByIdThunk } from '../../store/spot';
+import './SpotReview.css';
 
 function SpotReviews({ reviews, first, spotId }) {
     // console.log('spot reviews', reviews)
@@ -15,7 +16,6 @@ function SpotReviews({ reviews, first, spotId }) {
     const reviewsStateObj = useSelector(state => state.review);
     const reviewsState = Object.values(reviewsStateObj);
     const spot = useSelector(state => state.spot.singleSpot);
-    console.log('single spot', spot)
 
 
 
@@ -53,39 +53,39 @@ function SpotReviews({ reviews, first, spotId }) {
 
     // console.log(sessionUser)
     // console.log('spot reviews', reviews)
-    console.log('prop reviews', reviews)
-    if (!sessionUser) return null
-
+    // console.log('prop reviews', reviews)
     return (
         <div>
-            {(sessionUser.id !== spot.ownerId) && !(reviews.find(r => r.userId === sessionUser.id)) && <div>
-                <OpenModalButton
-                    buttonText='Create Review'
-                    modalComponent={<CreateReviewModal spotId={spotId} />} />
-            </div>}
-
-            {!reviews.length ? (<div>
-                <p>Be the first to post a review!</p>
-            </div>)
-                : (<div>
+            {sessionUser && (sessionUser?.id !== spot.ownerId) && !(reviews.find(r => r.userId === sessionUser.id)) &&
+                <div>
+                    <OpenModalButton
+                        buttonText='Create Review'
+                        modalComponent={<CreateReviewModal spotId={spotId} />}
+                    />
+                </div>}
+            {!reviews.length && sessionUser.id !== spot.ownerId ?
+                (<div>
+                    <p>Be the first to post a review!</p>
+                </div>) :
+                (<div>
                     {reviews.map(r => {
-                        console.log('mapped review', r)
                         return !r.User ? null :
-                        (
-                            <div>
+                            (
                                 <div>
-                                    <h4>{r.User.firstName} {r.User.lastName}</h4>
-                                    <p>{months[r.createdAt.slice(5, 7)]} {r.createdAt.slice(0, 4)}</p>
-                                    <p>{r.review}</p>
-                                    {(r.userId === sessionUser.id) && <div>
-                                        <OpenModalButton
-                                            buttonText='Delete Review'
-                                            modalComponent={<DeleteReviewModal reviewId={r.id} spotId={spotId}/>}
-                                        />
-                                    </div>}
+                                    <div className='review-info'>
+                                        <h3>{r.User.firstName} {r.User.lastName}</h3>
+                                        <div className='review-date-created'>{months[r.createdAt.slice(5, 7)]} {r.createdAt.slice(0, 4)}</div>
+                                        <p>{r.review}</p>
+                                        {(r.userId === sessionUser?.id) &&
+                                            <div>
+                                                <OpenModalButton
+                                                    buttonText='Delete Review'
+                                                    modalComponent={<DeleteReviewModal reviewId={r.id} spotId={spotId} />}
+                                                />
+                                            </div>}
+                                    </div>
                                 </div>
-                            </div>
-                        )
+                            )
                     })}
                 </div>)
             }

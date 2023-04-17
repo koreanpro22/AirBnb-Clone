@@ -1,9 +1,10 @@
 .spot-gallery {
     display: flex;
     flex-flow: row wrap;
-    width: 968PX;
+    max-width: 960PX;
     /* align-items: center; */
     /* justify-content: center; */
+    /* border: 1px solid black; */
 }
 
 .body {

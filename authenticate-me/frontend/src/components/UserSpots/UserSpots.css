@@ -1,0 +1,18 @@
+.manage-spot-header {
+    /* border: 1px solid black; */
+    align-self: start;
+    margin: 20px 20px;
+    /* margin-left: 20px; */
+    /* margin-bottom: 30px; */
+}
+
+/* .manage-spot-page {
+} */
+
+.create-spot-button {
+    background-color: grey;
+}
+
+.create-spot-button > a {
+    color: white !important;
+}
