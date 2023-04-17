@@ -50,7 +50,7 @@ function CreateSpotForm() {
         if (!address) errors.address = 'Address is required';
         if (!city) errors.city = 'City is required';
         if (!state) errors.state = 'State is required';
-        if (!country) errors.country = 'country is required';
+        if (!country) errors.country = 'Country is required';
         if (!title) errors.title = 'Name is required';
         if (description.length < 30) errors.description = 'Description needs a minimum of 30 characters';
         if (!(+price)) errors.price = 'Price must be valid integer'
@@ -87,7 +87,9 @@ function CreateSpotForm() {
                             reservation.
                         </div>
 
-                        <label>Country: </label>
+                        <label>Country:
+                            {errors.country && <span className="error-text">{errors.country}</span>}
+                        </label>
                         <input
                             type="text"
                             value={country}
@@ -95,26 +97,21 @@ function CreateSpotForm() {
                             placeholder="Country"
 
                         />
-                        {errors.country && <p className="error-text">{errors.country}</p>}
-
-
-
-                        <label>Street Address:</label>
+                        <label>Street Address:
+                            {errors.address && <span className="error-text">{errors.address}</span>}
+                        </label>
                         <input
                             type="text"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             placeholder="Address"
-
                         />
-                        {errors.address && <p className="error-text">{errors.address}</p>}
-
 
                         <div className="city-state-form">
                             <div className="city-box">
-
-
-                                <label>City: </label>
+                                <label>City:
+                                    {errors.city && <span className="error-text">{errors.city}</span>}
+                                </label>
                                 <input
                                     type="text"
                                     value={city}
@@ -122,11 +119,12 @@ function CreateSpotForm() {
                                     placeholder="City"
 
                                 />
-                                {errors.city && <p className="error-text">{errors.city}</p>}
                             </div>
                             <div className="state-box">
 
-                                <label>State: </label>
+                                <label>State: 
+                                    {errors.state && <span className="error-text">{errors.state}</span>}
+                                </label>
                                 <input
                                     type="text"
                                     value={state}
@@ -134,11 +132,11 @@ function CreateSpotForm() {
                                     placeholder="State"
 
                                 />
-                                {errors.state && <p className="error-text">{errors.state}</p>}
                             </div>
                         </div>
 
                     </div>
+                    <div className="border"></div>
                     <div>
                         <h4>Describe your place to guests</h4>
                         <p>Mention the best features of your space, any special amentities like fast wif or parking, and what you love about the neighborhood.</p>
@@ -151,8 +149,9 @@ function CreateSpotForm() {
                             cols='42'
                         >
                         </textarea>
-                        {errors.description && <p className="error-text">{errors.description}</p>}
+                        {errors.description && <span className="error-text">{errors.description}</span>}
                     </div>
+                    <div className="border"></div>
                     <div className="spot-title">
                         <h4>Create a title for your spot</h4>
                         <p>Catch guests' attention with a spot title that highlights what makes your place special</p>
@@ -166,6 +165,7 @@ function CreateSpotForm() {
 
                         {errors.title && <p className="error-text">{errors.title}</p>}
                     </div>
+                    <div className="border"></div>
                     <div>
                         <h4>Set a base price for your spot</h4>
                         <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
@@ -178,6 +178,7 @@ function CreateSpotForm() {
                         />
                         {errors.price && <p className="error-text">{errors.price}</p>}
                     </div>
+                    <div className="border"></div>
                     <div>
                         <h4>Liven up your spot with photos</h4>
                         <p>Submit a link to at least one photo to publish your spot.</p>
@@ -188,7 +189,7 @@ function CreateSpotForm() {
                                 onChange={(e) => setPreviewImage(e.target.value)}
                                 placeholder="Preview Image Url"
                             />
-                            {errors.prevImg && <p className="error-text">{errors.prevImg}</p>}
+                            {errors.prevImg && <span className="error-text">{errors.prevImg}</span>}
                             <input
                                 type="text"
                                 value={img1}

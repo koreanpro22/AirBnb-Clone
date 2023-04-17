@@ -8,14 +8,14 @@
 .city-box {
     display: flex;
     flex-flow: column;
-    width: 65%;
+    width: 55%;
     /* margin: 0px 2px; */
 }
 
 .state-box {
     display: flex;
     flex-flow: column;
-    width: 35%;
+    width: 45%;
 }
 
 .title-input {

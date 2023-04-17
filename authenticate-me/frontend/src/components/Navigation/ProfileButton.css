@@ -15,10 +15,35 @@
     justify-content: center;
 }
 
+.profile-box-signed-out {
+    border: 1px solid black;
+    font-weight: bold;
+    position: absolute;
+    top: 58px;
+    right: 26px;
+    background-color: lightgrey;
+    z-index: 1;
+    /* margin-left: 10px; */
+    /* align-content: center; */
+    /* width: fit-content; */
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .dropdown-button {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
     border-radius: 10px;
-    width: 40px;
+    width: 60px;
     height: 30px;
+    margin-right: 6px;
+}
+
+.dropdown-button > div {
+    padding: 0px 0px 0px 8px;
 }
 
 .dropdown-box {
@@ -46,4 +71,10 @@
 
 .error-text {
     margin: 5px 10px;
+    font-size: 12px;
 }
+
+.profile-box-button :hover {
+    cursor: pointer;
+}
+
